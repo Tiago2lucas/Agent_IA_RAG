@@ -4,26 +4,42 @@ Este projeto não é apenas uma ferramenta de consulta; é um estudo prático so
 ## 🎯 O Objetivo do Projeto
 A criação deste agente foi guiada pelo desejo de compreender a anatomia de um sistema RAG (Retrieval-Augmented Generation):
 
-* Manipulação de Precisão: Ajustar como a informação é recuperada e filtrada (via scores de relevância).
+* **Manipulação de Precisão**: Ajustar como a informação é recuperada e filtrada (via scores de relevância).
 
-* Atribuição de Função: Transformar a IA em um assistente técnico que se baseia estritamente em uma base de conhecimento.
+* **Atribuição de Função**: Transformar a IA em um assistente técnico que se baseia estritamente em uma base de conhecimento.
 
-* Domínio do Hardware: Entender como o software pode "conversar" com o processador para maximizar a eficiência.
+* **Domínio do Hardware**: Entender como o software pode "conversar" com o processador para maximizar a eficiência.
 
 ## 🚀 Escolha da LLM: Local vs Cloud
 Neste projeto, foi uma escolha técnica minha utilizar LLMs locais (via Ollama). O objetivo principal foi garantir a privacidade absoluta dos dados e permitir experimentos ilimitados sem custos de API.
 
-* Nota: Embora o projeto esteja configurado para o ecossistema local por padrão, a arquitetura é modular. Isso significa que você pode facilmente adaptar o código para utilizar outras LLMs (como GPT-4, Claude ou Gemini) apenas alterando os provedores no LangChain.
+* **Nota**: Embora o projeto esteja configurado para o ecossistema local por padrão, a arquitetura é modular. Isso significa que você pode facilmente adaptar o código para utilizar outras LLMs (como GPT-4, Claude ou Gemini) apenas alterando os provedores no LangChain.
 
 ## 🛠️ Tecnologias e Bibliotecas
-* LangChain: O "esqueleto" do agente, responsável por orquestrar o fluxo de dados.
+* **LangChain**: O "esqueleto" do agente, responsável por orquestrar o fluxo de dados.
 
-* ChromaDB: Nosso banco de dados vetorial, onde o conhecimento é armazenado.
+* **ChromaDB**: Nosso banco de dados vetorial, onde o conhecimento é armazenado.
 
-* Ollama: O motor que permite rodar a inteligência (Llama 3.2) e os Embeddings (Nomic) localmente.
+* **Ollama**: O motor que permite rodar a inteligência (Llama 3.2) e os Embeddings (Nomic) localmente.
 
 * PyPDF & TextSplitters: Ferramentas para fragmentar o conhecimento em pedaços digeríveis pela IA.
 
+## 🧠 Customização de Embeddings
+
+Uma peça fundamental na arquitetura deste agente é o modelo de **Embedding**. Ele é responsável por transformar o texto do seu PDF em vetores matemáticos para que a IA realize a busca semântica. 
+
+### Modelo Padrão: **nomic-embed-text**
+Por escolha técnica, utilizamos o **`nomic-embed-text`** devido ao seu excelente equilíbrio entre performance local e precisão. Contudo, o projeto é modular e permite a troca fácil de modelos.
+
+### Como alterar o modelo:
+Caso deseje testar outras representações, altere a string do modelo nos arquivos `cria_db.py` e `main.py`:
+```python
+embeddings = OllamaEmbeddings(model="nome-do-modelo-desejado")
+```
+### Onde encontrar novos modelos?
+Para facilitar a escolha, você pode consultar a biblioteca oficial do Ollama para descobrir novos modelos de embedding:
+* [Ollama Library - Embedding Models](https://ollama.com/search?c=embedding)
+  
 ## ⚙️ Como Utilizar e Aprender
 ### 1. Preparação do Terreno
 Instale as bibliotecas necessárias para o seu ambiente:
