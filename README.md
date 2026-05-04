@@ -40,13 +40,28 @@ embeddings = OllamaEmbeddings(model="nome-do-modelo-desejado")
 Para facilitar a escolha, você pode consultar a biblioteca oficial do Ollama para descobrir novos modelos de embedding:
 * [Ollama Library - Embedding Models](https://ollama.com/search?c=embedding)
   
-## ⚙️ Como Utilizar e Aprender
-### 1. Preparação do Terreno
+## ⚙️ Configuração do Ambiente de Desenvolvimento
+
+Para garantir que o agente rode perfeitamente no seu hardware e evitar conflitos de versões, siga este passo a passo técnico:
+
+### 1. Preparação do Terreno (Setup)
+Primeiro, isole o projeto criando um ambiente virtual e instale as bibliotecas necessárias:
+
+```bash
+# Criação do ambiente virtual (Recomendado)
+python -m venv .venv
+
+# Ativação do ambiente
+# No Windows: .venv\Scripts\activate | No Linux/Mac: source .venv/bin/activate
+
+```
+### 2. Preparação do Terreno
 Instale as bibliotecas necessárias para o seu ambiente:
 ```
 pip install langchain langchain-ollama langchain-community langchain-chroma pypdf chromadb python-dotenv
 ```
-### 2. Criação da Memória (Embedding)
+
+### 3. Criação da Memória (Embedding)
 Insira seus PDFs na pasta /base e execute:
 
 ```
@@ -54,7 +69,7 @@ python cria_db.py
 ```
 Aqui você verá a mágica da Vetorização: transformar texto humano em coordenadas matemáticas que a IA consegue buscar por significado.
 
-### 3. Execução do Agente
+### 4. Execução do Agente
 Inicie o diálogo com:
 
 ```
