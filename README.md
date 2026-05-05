@@ -14,6 +14,7 @@ A criação deste agente foi guiada pelo desejo de compreender a anatomia de um 
 Neste projeto, foi uma escolha técnica minha utilizar LLMs locais (via Ollama). O objetivo principal foi garantir a privacidade absoluta dos dados e permitir experimentos ilimitados sem custos de API.
 
 * **Nota**: Embora o projeto esteja configurado para o ecossistema local por padrão, a arquitetura é modular. Isso significa que você pode facilmente adaptar o código para utilizar outras LLMs (como GPT-4, Claude ou Gemini) apenas alterando os provedores no LangChain.
+* [Caso utilize o Ollama](https://ollama.com/)
 
 ## 🛠️ Tecnologias e Bibliotecas
 * **LangChain**: O "esqueleto" do agente, responsável por orquestrar o fluxo de dados.
