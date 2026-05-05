@@ -22,7 +22,7 @@ Neste projeto, foi uma escolha técnica minha utilizar LLMs locais (via Ollama).
 
 * **Ollama**: O motor que permite rodar a inteligência (Llama 3.2) e os Embeddings (Nomic) localmente.
 
-* PyPDF & TextSplitters: Ferramentas para fragmentar o conhecimento em pedaços digeríveis pela IA.
+* **PyPDF** & TextSplitters: Ferramentas para fragmentar o conhecimento em pedaços digeríveis pela IA.
 
 ## 🧠 Customização de Embeddings
 
@@ -78,11 +78,11 @@ python main.py
 ## 🧠 Engenharia e Performance: Otimização de Threads
 Uma das partes mais profundas deste projeto é o gerenciamento de recursos. Para garantir que a resposta seja gerada com velocidade sem travar o seu computador:
 
-* Cálculo de Hardware: O agente identifica automaticamente o total de núcleos do CPU (ex: as 14 threads do seu processador).
+* **Cálculo de Hardware**: O agente identifica automaticamente o total de núcleos do CPU (ex: as 14 threads do seu processador).
 
-* Reserva de Segurança: O código reserva automaticamente 4 threads para o Sistema Operacional, utilizando o restante para a "frequência de pensamento" da LLM.
+* **Reserva de Segurança**: O código reserva automaticamente 4 threads para o Sistema Operacional, utilizando o restante para a "frequência de pensamento" da LLM.
 
-* Streaming: A resposta é entregue em tempo real, permitindo que o usuário comece a leitura enquanto a IA ainda está finalizando o raciocínio.
+* **Streaming**: A resposta é entregue em tempo real, permitindo que o usuário comece a leitura enquanto a IA ainda está finalizando o raciocínio.
 
 Autor
 ```Tiago Lucas - Junior Quality Assurance Analyst & Engineer```
