@@ -24,6 +24,8 @@ Neste projeto, foi uma escolha técnica minha utilizar LLMs locais (via Ollama).
 
 * **PyPDF** & TextSplitters: Ferramentas para fragmentar o conhecimento em pedaços digeríveis pela IA.
 
+* **Python**: Versão 3.14.4
+
 ## 🧠 Customização de Embeddings
 
 Uma peça fundamental na arquitetura deste agente é o modelo de **Embedding**. Ele é responsável por transformar o texto do seu PDF em vetores matemáticos para que a IA realize a busca semântica. 
@@ -49,7 +51,7 @@ Primeiro, isole o projeto criando um ambiente virtual e instale as bibliotecas n
 
 ```bash
 # Criação do ambiente virtual (Recomendado)
-python -m venv .venv
+py -m venv .venv
 
 # Ativação do ambiente
 # No Windows: .venv\Scripts\activate | No Linux/Mac: source .venv/bin/activate
