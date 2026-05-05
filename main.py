@@ -16,49 +16,50 @@ com base nessas informações:
 {base_conhecimento}
 """
 
-def perguntar():
-    pergunta_usuario= input("Digite sua pergunta:  ")
+def iniciar_agente():
 
-    function_ollmaEmbbengings = OllamaEmbeddings(model="nomic-embed-text")
-
-    db = Chroma(persist_directory=CAMINHO_DB,
-                embedding_function=function_ollmaEmbbengings
-                )
-
-    resultados= db._similarity_search_with_relevance_scores(pergunta_usuario, k=4)
-
-    if len(resultados) == 0 or resultados[0][1] < 0.5:
-        print("Desculpe, não encontrei informações relevantes no PDF.")
-        
-    
-    score_topo = resultados[0][1]
-        
-    base_conhecimento = resultados[0][0].page_content
-    
-    total_threads = os.cpu_count() 
+    total_threads = os.cpu_count() or 4
     threads_para_uso = total_threads - 4 if total_threads > 4 else total_threads
     
-    
-    prompt = ChatPromptTemplate.from_template(prompt_template)
-    prompt_formatado = prompt.format(pergunta_usuario=pergunta_usuario, base_conhecimento=base_conhecimento)
-    
+   
+    embeddings = OllamaEmbeddings(model="nomic-embed-text")
+    db = Chroma(persist_directory=CAMINHO_DB, embedding_function=embeddings)
     modelo = ChatOllama(model="llama3.2", temperature=0.3, num_thread=threads_para_uso)
-    print(f"Score do resultado mais relevante: {score_topo:.4f}")
-    print(f"🚀 Usando {threads_para_uso} threads")
     
-    
-    print("\n✅ Resposta da IA: ", end="", flush=True)
-    
-    inicio_time = time.time()
-    
-    for chunk in modelo.stream(prompt_formatado):
-        print(chunk.content, end="", flush=True)
-    
-    fim_time = time.time()
+    print("\n" + "="*30 + "\n🤖 AGENTE RAG ONLINE\n" + "="*30)
+    print(f"🚀 Hardware otimizado: {threads_para_uso} threads em uso.")
 
-    tempo_total = fim_time - inicio_time
-    print(f"\n\n⏱️ Tempo total de processamento: {tempo_total:.2f} segundos.")
-    
+    while True:
+        print("\n" + "-"*50)
+        pergunta_usuario = input("➤ Pergunta (ou Enter/Sair para finalizar): ").strip()
+
+        # TRAVA DE SEGURANÇA: Se o input for vazio ou 'sair', encerra na hora
+        if not pergunta_usuario or pergunta_usuario.lower() == "sair":
+            print("\n" + "="*30)
+            print("🛑 AGENTE FINALIZADO: Encerrando conexões... Até logo!")
+            print("="*30)
+            break 
+        
+        resultados = db._similarity_search_with_relevance_scores(pergunta_usuario, k=4)
+
+        if not resultados or resultados[0][1] < 0.5:
+            print("\n⚠️  Aviso: Não encontrei informações seguras nos documentos.")
+            continue 
+
+        base_conhecimento = resultados[0][0].page_content
+        prompt = ChatPromptTemplate.from_template(prompt_template)
+        prompt_formatado = prompt.format(pergunta_usuario=pergunta_usuario, base_conhecimento=base_conhecimento)
+        
+        print(f"📊 Score de Relevância: {resultados[0][1]:.4f}")
+        print("✅ Resposta: ", end="", flush=True)
+        
+        inicio = time.time()
+        
+        for chunk in modelo.stream(prompt_formatado):
+            print(chunk.content, end="", flush=True)
+        
+        tempo_final = time.time() - inicio
+        print(f"\n\n⏱️  Tempo de processamento: {tempo_final:.2f}s")
 
 if __name__ == "__main__":
-    perguntar()
+    iniciar_agente()
