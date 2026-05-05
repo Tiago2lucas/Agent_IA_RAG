@@ -68,7 +68,7 @@ pip install langchain langchain-ollama langchain-community langchain-chroma pypd
 Insira seus PDFs na pasta /base e execute:
 
 ```
-python cria_db.py
+py cria_db.py
 ```
 Aqui você verá a mágica da Vetorização: transformar texto humano em coordenadas matemáticas que a IA consegue buscar por significado.
 
@@ -76,7 +76,7 @@ Aqui você verá a mágica da Vetorização: transformar texto humano em coorden
 Inicie o diálogo com:
 
 ```
-python main.py
+py main.py
 ```
 ## 🧠 Engenharia e Performance: Otimização de Threads
 Uma das partes mais profundas deste projeto é o gerenciamento de recursos. Para garantir que a resposta seja gerada com velocidade sem travar o seu computador:
