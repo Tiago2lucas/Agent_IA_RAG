@@ -13,8 +13,13 @@ A criação deste agente foi guiada pelo desejo de compreender a anatomia de um 
 ## 🚀 Escolha da LLM: Local vs Cloud
 Neste projeto, foi uma escolha técnica minha utilizar LLMs locais (via Ollama). O objetivo principal foi garantir a privacidade absoluta dos dados e permitir experimentos ilimitados sem custos de API.
 
-* **Nota**: Embora o projeto esteja configurado para o ecossistema local por padrão, a arquitetura é modular. Isso significa que você pode facilmente adaptar o código para utilizar outras LLMs (como GPT-4, Claude ou Gemini) apenas alterando os provedores no LangChain.
+* **Nota** 1: Embora o projeto esteja configurado para o ecossistema local por padrão, a arquitetura é modular. Isso significa que você pode facilmente adaptar o código para utilizar outras LLMs (como GPT-4, Claude ou Gemini) apenas alterando os provedores no LangChain.
 * [Caso utilize o Ollama](https://ollama.com/)
+* **Nota** 2: Caso você opte por utilizar modelos de nuvem, deve criar um arquivo na estrutura do projeto para incluir a chave da API. O nome do arquivo deve ser:
+  `````
+  .env
+  
+  `````
 
 ## 🛠️ Tecnologias e Bibliotecas
 * **LangChain**: O "esqueleto" do agente, responsável por orquestrar o fluxo de dados.
@@ -46,6 +51,15 @@ Para facilitar a escolha, você pode consultar a biblioteca oficial do Ollama pa
 ## ⚙️ Configuração do Ambiente de Desenvolvimento
 
 Para garantir que o agente rode perfeitamente no seu hardware e evitar conflitos de versões, siga este passo a passo técnico:
+
+## 👤 Experiência do Usuário (UX) e Robustez
+O projeto agora aplica práticas de **"Design à prova de erros"**:
+
+* **Interrupção Inteligente**: Encerramento imediato e amigável ao detectar intenção de saída.
+* **Prevenção de Comandos Vazios**: Ignora entradas acidentais, evitando processamento desnecessário de dados.
+* **Feedback Visual Contínuo**: Uso de **Streaming** para que o usuário receba a resposta em tempo real, eliminando a sensação de "tela travada".
+* **Resiliência de Hardware**: O balanceamento de threads permite que o usuário utilize outras ferramentas simultaneamente sem lentidão no computador.
+
 
 ### 1. Preparação do Terreno (Setup)
 Primeiro, isole o projeto criando um ambiente virtual e instale as bibliotecas necessárias:
